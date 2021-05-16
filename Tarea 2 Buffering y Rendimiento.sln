@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tarea 2 Buffering y Rendimiento", "Tarea 2 Buffering y Rendimiento\Tarea 2 Buffering y Rendimiento.vcxproj", "{5CFCA0E3-33DF-4C98-B1C9-68FD2D151D68}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5CFCA0E3-33DF-4C98-B1C9-68FD2D151D68}.Debug|x64.ActiveCfg = Debug|x64
+		{5CFCA0E3-33DF-4C98-B1C9-68FD2D151D68}.Debug|x64.Build.0 = Debug|x64
+		{5CFCA0E3-33DF-4C98-B1C9-68FD2D151D68}.Debug|x86.ActiveCfg = Debug|Win32
+		{5CFCA0E3-33DF-4C98-B1C9-68FD2D151D68}.Debug|x86.Build.0 = Debug|Win32
+		{5CFCA0E3-33DF-4C98-B1C9-68FD2D151D68}.Release|x64.ActiveCfg = Release|x64
+		{5CFCA0E3-33DF-4C98-B1C9-68FD2D151D68}.Release|x64.Build.0 = Release|x64
+		{5CFCA0E3-33DF-4C98-B1C9-68FD2D151D68}.Release|x86.ActiveCfg = Release|Win32
+		{5CFCA0E3-33DF-4C98-B1C9-68FD2D151D68}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4BBE824A-041F-4890-A612-265CD4B9E130}
+	EndGlobalSection
+EndGlobal
