@@ -47,7 +47,6 @@ public:
 	int ignore(istream& file);
 
 	void print();
-	int totalSize();
 
 private:
 	char* id;

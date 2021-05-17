@@ -245,7 +245,7 @@ int Movie::Unpack(DelimTextBuffer& _buffer) {
 	resultado = set_video(_buffer.Unpack(video));
 	resultado = set_vote_average(_buffer.Unpack(vote_average));
 	resultado = set_vote_count(_buffer.Unpack(vote_count));
-	cout << id;
+
 	return resultado;
 }
 
@@ -259,9 +259,9 @@ int Movie::Read(DelimTextBuffer& _delim, istream& file) {
 }
 
 int Movie::Write(DelimTextBuffer& _delim, ostream& destination, int repeticiones) {
-	int resultado;
+	int resultado = 0;
+	resultado = this->Pack(_delim);
 	for (int i = 0; i < repeticiones; i++) {
-		resultado = this->Pack(_delim);
 		resultado = resultado && _delim.Write(destination);
 	}
 	return resultado;
@@ -275,66 +275,111 @@ int Movie::ignore(istream& file) {
 
 int Movie::Write(ostream& fileDestination, int _repets) {
 	for (int i = 0; i < _repets; i++) {
-		char* cadena;
-		/*int tamanio = totalSize();
-		cadena = new char[tamanio + sizeof(tamanio)];*/
-		cadena = new char[strlen(id)];
-		strcpy_s(cadena, strlen(id) + 1, id);
-		strcat_s(cadena, strlen(cadena) + 2, "^");
-		strcat_s(cadena, strlen(cadena) + strlen(budget) + 1, budget);
-		strcat_s(cadena, strlen(cadena) + 2, "^");
-		strcat_s(cadena, strlen(cadena) + strlen(homepage) + 1, homepage);
-		strcat_s(cadena, strlen(cadena) + 2, "^");
-		strcat_s(cadena, strlen(cadena) + strlen(id_1) + 1, id_1);
-		strcat_s(cadena, strlen(cadena) + 2, "^");
-		strcat_s(cadena, strlen(cadena) + strlen(imdb_id) + 1, imdb_id);
-		strcat_s(cadena, strlen(cadena) + 2, "^");
-		strcat_s(cadena, strlen(cadena) + strlen(original_language) + 1, original_language);
-		strcat_s(cadena, strlen(cadena) + 2, "^");
-		strcat_s(cadena, strlen(cadena) + strlen(original_title) + 1, original_title);
-		strcat_s(cadena, strlen(cadena) + 2, "^");
-		strcat_s(cadena, strlen(cadena) + strlen(overview) + 1, overview);
-		strcat_s(cadena, strlen(cadena) + 2, "^");
-		strcat_s(cadena, strlen(cadena) + strlen(popularity) + 1, popularity);
-		strcat_s(cadena, strlen(cadena) + 2, "^");
-		strcat_s(cadena, strlen(cadena) + strlen(poster_path) + 1, poster_path);
-		strcat_s(cadena, strlen(cadena) + 2, "^");
-		strcat_s(cadena, strlen(cadena) + strlen(release_date) + 1, release_date);
-		strcat_s(cadena, strlen(cadena) + 2, "^");
-		strcat_s(cadena, strlen(cadena) + strlen(revenue) + 1, revenue);
-		strcat_s(cadena, strlen(cadena) + 2, "^");
-		strcat_s(cadena, strlen(cadena) + strlen(runtime) + 1, runtime);
-		strcat_s(cadena, strlen(cadena) + 2, "^");
-		strcat_s(cadena, strlen(cadena) + strlen(status) + 1, status);
-		strcat_s(cadena, strlen(cadena) + 2, "^");
-		strcat_s(cadena, strlen(cadena) + strlen(tagline) + 1, tagline);
-		strcat_s(cadena, strlen(cadena) + 2, "^");
-		strcat_s(cadena, strlen(cadena) + strlen(title) + 1, title);
-		strcat_s(cadena, strlen(cadena) + 2, "^");
-		strcat_s(cadena, strlen(cadena) + strlen(video) + 1, video);
-		strcat_s(cadena, strlen(cadena) + 2, "^");
-		strcat_s(cadena, strlen(cadena) + strlen(vote_average) + 1, vote_average);
-		strcat_s(cadena, strlen(cadena) + 2, "^");
-		strcat_s(cadena, strlen(cadena) + strlen(vote_count) + 1, vote_count);
-
-		//fileDestination.write((char*)&tamanio, sizeof(tamanio));
-		fileDestination.write(cadena, sizeof(cadena));
+		fileDestination << id;
+		fileDestination << '^';
+		fileDestination << budget;
+		fileDestination << '^';
+		fileDestination << homepage;
+		fileDestination << '^';
+		fileDestination << id_1;
+		fileDestination << '^';
+		fileDestination << imdb_id;
+		fileDestination << '^';
+		fileDestination << original_language;
+		fileDestination << '^';
+		fileDestination << original_title;
+		fileDestination << '^';
+		fileDestination << overview;
+		fileDestination << '^';
+		fileDestination << popularity;
+		fileDestination << '^';
+		fileDestination << poster_path;
+		fileDestination << '^';
+		fileDestination << release_date;
+		fileDestination << '^';
+		fileDestination << revenue;
+		fileDestination << '^';
+		fileDestination << runtime;
+		fileDestination << '^';
+		fileDestination << status;
+		fileDestination << '^';
+		fileDestination << tagline;
+		fileDestination << '^';
+		fileDestination << title;
+		fileDestination << '^';
+		fileDestination << video;
+		fileDestination << '^';
+		fileDestination << vote_average;
+		fileDestination << '^';
+		fileDestination << vote_count;
+		fileDestination << '^';
 	}
 
 	return fileDestination.good();
 }
 
 int Movie::Read(istream& file) {
-	/*const int tamanio = 0;
-	file.read((char*)&tamanio, sizeof(tamanio));
-	
-	char* cadena = new char[tamanio];
-	file.read(cadena, tamanio);
+	char aux[256];
+	file.getline(aux, 256, '^');
+	set_id(aux);
 
-	char* aux = strtok(cadena, "^");*/
+	file.getline(aux, 256, '^');
+	set_budget(aux);
 
+	file.getline(aux, 256, '^');
+	set_homepage(aux);
 
-	return true;
+	file.getline(aux, 256, '^');
+	set_id_1(aux);
+
+	file.getline(aux, 256, '^');
+	set_imdb_id(aux);
+
+	file.getline(aux, 256, '^');
+	set_original_lenguage(aux);
+
+	file.getline(aux, 256, '^');
+	set_original_title(aux);
+
+	char aux1[10000];
+	file.getline(aux1, 10000, '^');
+	set_overview(aux1);
+
+	file.getline(aux, 256, '^');
+	set_popularity(aux);
+
+	file.getline(aux, 256, '^');
+	set_poster_path(aux);
+
+	file.getline(aux, 256, '^');
+	set_release_date(aux);
+
+	file.getline(aux, 256, '^');
+	set_revenue(aux);
+
+	file.getline(aux, 256, '^');
+	set_runtime(aux);
+
+	file.getline(aux, 256, '^');
+	set_status(aux);
+
+	char aux2[500];
+	file.getline(aux2, 500, '^');
+	set_tagline(aux2);
+
+	file.getline(aux, 256, '^');
+	set_title(aux);
+
+	file.getline(aux, 256, '^');
+	set_video(aux);
+
+	file.getline(aux, 256, '^');
+	set_vote_average(aux);
+
+	file.getline(aux, 256, '^');
+	set_vote_count(aux);
+
+	return file.good();
 }
 
 int Movie::ReadOriginal(istream& file) {
@@ -440,29 +485,5 @@ void Movie::print() {
 		<< "\nVideo: " << video
 		<< "\nVote Average: " << vote_average
 		<< "\nVote Count: " << vote_count;
-}
-
-int Movie::totalSize() {
-	int total = 0;
-	total += strlen(id);
-	total += strlen(budget);
-	total += strlen(homepage);
-	total += strlen(id_1);
-	total += strlen(imdb_id);
-	total += strlen(original_language);
-	total += strlen(original_title);
-	total += strlen(overview);
-	total += strlen(popularity);
-	total += strlen(poster_path);
-	total += strlen(release_date);
-	total += strlen(revenue);
-	total += strlen(runtime);
-	total += strlen(status);
-	total += strlen(tagline);
-	total += strlen(title);
-	total += strlen(video);
-	total += strlen(vote_average);
-	total += strlen(vote_count);
-	return total;
 }
 
