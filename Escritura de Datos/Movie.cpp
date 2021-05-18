@@ -254,6 +254,7 @@ int Movie::Read(DelimTextBuffer& _delim, istream& file) {
 
 	resultado = _delim.Read(file);
 	resultado = resultado && this->Unpack(_delim);
+
 	return resultado;
 }
 
