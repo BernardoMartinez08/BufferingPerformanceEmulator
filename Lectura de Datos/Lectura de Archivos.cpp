@@ -52,7 +52,7 @@ int main() {
 			}
 			else {
 				while (!file2.eof()) {
-					DelimTextBuffer delim('^', 40000);
+					DelimTextBuffer delim('^', 5000);
 
 					Movie peli;
 					peli.Read(delim, file2);
